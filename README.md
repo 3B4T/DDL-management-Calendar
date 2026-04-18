@@ -25,8 +25,8 @@ Windows Calendar runs as a compact always-on-top app, keeps working in the syste
 ## Download and Install
 
 1. Open the [Releases](https://github.com/3B4T/DDL-management-Calendar/releases) page.
-2. Download the latest `app.exe` asset.
-3. Run `app.exe`.
+2. Download `Windows-Calendar-Setup.exe` from the latest release assets.
+3. Run `Windows-Calendar-Setup.exe` and follow the installer.
 
 If Windows SmartScreen appears, click `More info` and then `Run anyway` (only if you trust this repository).
 
