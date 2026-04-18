@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# Windows Calendar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight desktop planner for Windows focused on deadlines and daily execution.
 
-Currently, two official plugins are available:
+Windows Calendar runs as a compact always-on-top app, keeps working in the system tray, and reminds you before things are due so important tasks do not slip.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What It Does
 
-## React Compiler
+- Manage two task types:
+  - `TODO`: near-term actionable tasks
+  - `DDL`: hard deadlines
+- Calendar view with month/week switch for quick planning.
+- Task lists for upcoming TODOs and future DDLs.
+- Reminder system with Windows notifications and optional sound.
+- Quick snooze options (`5 / 15 / 30 min`) directly from reminder cards.
+- DDL safety behavior:
+  - Each DDL can be postponed once.
+  - Expired DDLs can be converted to TODO for follow-up.
+- System tray support:
+  - Keep app running in tray
+  - Close-to-tray behavior
+  - Auto-start with Windows
+- Data stored locally with SQLite.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Download and Install
 
-## Expanding the ESLint configuration
+1. Open the [Releases](https://github.com/3B4T/DDL-management-Calendar/releases) page.
+2. Download the latest `app.exe` asset.
+3. Run `app.exe`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+If Windows SmartScreen appears, click `More info` and then `Run anyway` (only if you trust this repository).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Quick Start
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Create a TODO or DDL item.
+2. Set due time and reminder offsets.
+3. Keep the app in tray while you work.
+4. When reminders pop up, choose complete, edit, or snooze.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Privacy
+
+- This app is local-first.
+- Your tasks and settings are saved on your machine (SQLite).
+- No cloud sync or analytics is required for normal use.
+
+## Tech Stack
+
+- Tauri (Rust backend)
+- React + TypeScript (frontend)
+- SQLite (local persistence)
+
+## Local Development
+
+### Prerequisites
+
+- Node.js 18+
+- Rust toolchain
+- Tauri prerequisites for Windows
+
+### Run
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Test
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm test
 ```
+
+### Frontend Build
+
+```bash
+npm run build
+```
+
+### Desktop Build (Tauri)
+
+```bash
+cargo tauri build
+```
+
+Built executables are generated under `src-tauri/target/release/` (or copied to `artifacts/` when using project scripts).
