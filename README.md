@@ -28,6 +28,8 @@ Windows Calendar runs as a compact always-on-top app, keeps working in the syste
 2. Download `Windows-Calendar-Setup.exe` from the latest release assets.
 3. Run `Windows-Calendar-Setup.exe` and follow the installer.
 
+For `v0.1.2+`, the release build uses a new app identifier and a fresh local app-data directory by default, so installer packages do not ship your existing personal task data.
+
 If Windows SmartScreen appears, click `More info` and then `Run anyway` (only if you trust this repository).
 
 ## Quick Start
